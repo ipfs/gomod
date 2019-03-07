@@ -5,6 +5,37 @@ of using them. In here we will gather knowledge, tools and other bits to ease up
 go modules.
 
 
+#### Updating modules
+
+To simply update dependency to newer tagged version:
+```
+go get github.com/ipfs/go-cid@v0.0.2
+```
+
+It is not required to update all after a new version is released.
+In general update update modules that use the new functionality or require fixes.
+
+##### Dev workflow
+
+Use local replace [directives](https://github.com/golang/go/wiki/Modules#when-should-i-use-the-replace-directive) for developing.
+Example:
+```
+replace github.com/ipfs/go-cid => ../go-cid
+```
+
+To test out in CI, commit and push the dependency to a branch and then run:
+```
+go get github.com/ipfs/go-cid@$HASH
+```
+to update the version. You can also replace `$HASH` with branch name.
+
+If for some reason version in the build did not change
+(caused by off master tags). Use replace directive like this:
+```
+replace github.com/ipfs/go-cid => github.com/ipfs/go-cid@$HASH
+```
+
+
 #### CI Config
 
 Here is a config for Travis CI: [travis.example.yml](https://github.com/ipfs/ci-helpers/blob/master/travis-ci/travis.example.yml)

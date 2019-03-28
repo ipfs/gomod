@@ -35,6 +35,16 @@ If for some reason version in the build did not change
 replace github.com/ipfs/go-cid => github.com/ipfs/go-cid@$HASH
 ```
 
+#### How to release
+
+To create a release follow this checklist:
+
+1. Run `go mod tidy` on master. If there are changes, create a branch and PR them.
+2. Create a git tag on master branch (after above changes are merged).
+It is important that the tag is created on master branch. You can use `git tag -as $TAG` or
+`git tag -s -m "$RELEASE_MESSAGE"`.
+3. Congratulations, you are done with creating a release.
+
 
 #### CI Config
 
